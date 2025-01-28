@@ -67,3 +67,24 @@ max_tick = parser.parse_event("round_end")["tick"].max()
 filterd_df = ["kills_total"]
 filterd_df_new = parser.parse_ticks(filterd_df, ticks=[max_tick])
 print(filterd_df_new)
+
+# method to get the suspected player
+def get_suspected_player():
+    suspect = input("Enter the name of the suspected player: ")
+    return suspect
+
+get_suspected_player()
+
+# method to filter the filtered df
+def filter_filtered_df(filterd_df_new , suspect):
+    for index, row in filterd_df_new.iterrows(): 
+        if suspect in row['name']:
+            
+            return row
+        
+# set the suspect to the player you want to investigate
+suspect = get_suspected_player()
+print(filter_filtered_df(filterd_df_new, suspect= suspect))
+
+
+
