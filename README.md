@@ -1,38 +1,68 @@
 # AntiCheat AI - Demo-based Anti-Cheat Detection System
 
-## Overview
+## 🌱 Overview
 
-**AntiCheat AI** is a machine learning-powered anti-cheat detection system that analyzes in-game demo files to detect suspicious player behaviors. By comparing player actions to professional-level gameplay, the system flags anomalies that could indicate cheating, such as aimbots, wallhacks, and other unfair advantages.
+**AntiCheat AI** is a personal project where I'm experimenting with **machine learning** to detect suspicious behavior in online multiplayer games. By analyzing **in-game demo files**, the system compares player actions to professional-level gameplay and flags anomalies that could indicate cheating. This includes detecting behaviors like **aimbots**, **wallhacks**, and more.
 
-This project aims to provide a new, behavior-driven layer of anti-cheat protection to complement traditional methods, leveraging **demo file analysis** and **machine learning** to identify cheaters in online multiplayer games.
+This project is a stepping stone in my journey to explore AI and **computer science**, as I plan to study Artificial Intelligence further. The goal is to build a better understanding of AI techniques, and apply them to something fun and practical like online game security.
 
-## Features
+---
 
-- **Machine Learning-Based Detection**: Analyzes player behavior, particularly reaction time, by comparing it to the reaction times of the top professional players.
-- **Detects Unusual Reaction Time**: Flags players whose reaction times are significantly faster or slower than the average of top-tier professional players, as this can indicate cheating (e.g., aimbots or other assistance tools).
-- **Demo File Analysis**: Extracts detailed player actions and game events from demo files to evaluate reaction times and detect potential cheaters.
-- **Pro Player Benchmarking**: Uses the best professional players' benchmarks to define what is "normal" for reaction times in specific game scenarios.
+## 🧠 Features
 
+### ⏱️ **Unusual Reaction Time Detection**  
+By analyzing player reaction times, I compare them to the reaction times of professional players. If a player's reaction is too fast (or unusually slow), it may indicate the use of cheats like **aimbots**. This allows the system to flag potential cheaters based on an outlier performance.
 
-## More Features coming
+### 🎮 **Demo File Analysis**  
+The system extracts **player actions**, **team info**, and **game events** from demo files to assess players' behaviors, especially focusing on timing, accuracy, and movements.
 
-- **Detects Suspicious Corner-Checking**: Uses machine learning to analyze corner-checking behavior, comparing it to how professional players approach corners and angles. Players who display abnormal pre-aiming or predictive behavior at corners may be flagged for potential wallhack usage.
+### 🏆 **Pro Player Benchmarking**  
+Professional player data is used as a benchmark to understand what "normal" reaction times and behaviors look like in various scenarios. This helps establish what's considered fair play, and detects players who fall far outside these norms.
 
-## Technologies Used
+---
 
-- **Python**: Primary language for data parsing and machine learning model training.
-- **Pandas**: Used for data manipulation and analysis of demo events.
-- **Scikit-learn**: Machine learning library for training detection models.
-- **NumPy**: Used for numerical computations on game data.
-- **Matplotlib/Seaborn**: Visualization tools for data analysis.
-- **DemoParser**: A custom Python module for parsing demo files and extracting relevant player data.
+## 🚧 More Features Coming Soon
 
-## How It Works
+### 👀 **Suspicious Corner-Checking Behavior**  
+One of the future plans for this project is to implement **corner-checking** detection. This uses machine learning to compare how players approach corners and angles in the game. Professional players have a specific way of checking corners, and players who display predictive aiming or suspicious movements might be flagged for using **wallhacks**.
 
-1. **Data Extraction**: The system reads demo files from games (e.g., Counter-Strike 2) and extracts player actions, team names, weapon choices, and more.
-   
-2. **Behavioral Analysis**: The system compares these actions against a dataset of professional player demos. This dataset acts as a benchmark for normal behavior in the game.
-   
-3. **Anomaly Detection**: Using machine learning algorithms, the system identifies patterns of play that differ significantly from the norm (e.g., extreme accuracy, improbable kills, strange movement).
-   
-4. **Flagging Cheating**: If a player's behavior is too far outside normal patterns, they are flagged for potential cheating.
+---
+
+## 🔧 Technologies Used
+
+- **Python**: The primary language for this project, as I learn how to use Python for data analysis and machine learning.
+- **Pandas**: Helps me manipulate the demo data and extract useful player stats.
+- **Scikit-learn**: The library I’m using to experiment with machine learning techniques to detect patterns.
+- **NumPy**: For efficient handling of numerical data.
+- **Matplotlib/Seaborn**: Used for visualizing the data and analyzing trends.
+- **DemoParser**: A Python module for parsing game demo files to extract player actions and events.
+
+---
+
+## 🚀 How It Works
+
+1. **Data Extraction**  
+   First, the system reads **demo files** from the game (such as **Counter-Strike 2**) and extracts important details like **player actions**, **team names**, **kills**, **weapon choices**, and **game events**.
+
+2. **Behavioral Analysis**  
+   It then compares the extracted player actions to those of **professional players**, using their gameplay as a benchmark to understand what's normal and what's not.
+
+3. **Anomaly Detection**  
+   Using basic machine learning techniques, the system tries to find outliers in player behavior — for example, players who are **too accurate**, have **extreme reaction times**, or show **strange movement patterns**.
+
+4. **Flagging Potential Cheating**  
+   If a player's actions don’t match up with what is expected from top players, they are flagged for possible cheating.
+
+---
+
+## 💡 How You Can Contribute
+
+Since this is a personal project, I’m still figuring things out. But if you want to get involved or offer advice, I’d love to hear from you! You can help by:
+
+1. Forking the repo
+2. Submitting pull requests if you have ideas or improvements
+3. Reporting any bugs or suggesting features to improve the system
+
+Feel free to dive into the code and suggest changes. This is all part of my learning journey, and any help is greatly appreciated!
+
+---
