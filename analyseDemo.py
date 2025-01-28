@@ -88,3 +88,19 @@ print(filter_filtered_df(filterd_df_new, suspect= suspect))
 
 
 
+# analyse aim of the player 
+player_hurt_events = parser.parse_event("player_hurt")
+df_aim  = parser.parse_ticks(["pitch", "yaw"])
+print(df_aim.head())
+for (idx, event) in player_hurt_events.iterrows():
+    start_tick = event["tick"] - 300
+    end_tick = event["tick"]
+    attacker = event["attacker_steamid"]
+    
+    # attacker can be none when player gets hurt by c4 etc.
+    if attacker != None:
+        subdf = df_aim[(df_aim["tick"].between(start_tick, end_tick)) & (df_aim["name"] == suspect)]
+        print(subdf)
+
+
+
