@@ -99,6 +99,17 @@ df_aim  = parser.parse_ticks(["pitch", "yaw"])
 print(df_aim.head())
 
 
+df_head = parser.parse_header(["headshot"])
+df_total_kills = get_total_kills(df, suspect)
+# meothod to get the headshotCount 
+def get_headshot_count(df_head, df_total_kills):
+    headshot_count = df_head["headshot"].sum()
+    total_kills = df_total_kills["total_kills"].sum()
+    headshot_percent = (headshot_count / total_kills) * 100
+    return headshot_percent
+
+get_headshot_count(df_head, df_total_kills)
+    
 
 
 for (idx, event) in player_hurt_events.iterrows():

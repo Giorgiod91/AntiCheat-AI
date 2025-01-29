@@ -15,9 +15,6 @@ import numpy as np
 # pro player aim vector [ 0.9319481  -0.34341177  0.11636624]
 aim_vector_pro = [ 0.9319481,  -0.34341177,  0.11636624]
 
-
-
-
 # hardcoded data for now on just to test my model
 HeadshotPercent = ["70","50","40","99","100", "85"]
 kill_count = ["5", "10", "15", "25", "35", "40"]
@@ -37,7 +34,13 @@ print(f"shape of killcount: {y.shape}")
 model = Sequential()
 
 # input and hidden layer with the default ReLU activation
-model.add(Dense(units=5, activation='relu', input_dim=2)) 
+model.add(Dense(units=10, activation='relu', input_dim=5))  
+
+
+model.add(Dense(units=5, activation='relu'))  
+
+
+
 # outout layer with sigmoid activations since its a binarz classification
 model.add(Dense(units=1, activation='sigmoid'))
 
