@@ -10,3 +10,11 @@ creating methods to access player name from the demo video then i will extract t
 - see if the model can see difference between a pro player and a cheater stat wise ( movement, accuracy and so on)
 - get big data set to work with
 - first test it with myself playing
+
+#Aim analyse
+
+- Pitch: ( vertical angle of aim so up and down) ---> 90 is looking straigh up - 90 is looking straight down
+- Yaw: (horizontal angle of aim so left and right) ----> represents the rotation around the vertical axis, usually in degrees from 0° to 360°
+- Tick: he server tick at which the aim data was recorded.
+
+-------> convert this into a 3d Vektor to analyse

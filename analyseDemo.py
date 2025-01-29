@@ -6,6 +6,9 @@ import pandas as pd
 pd.set_option('display.max_rows', 500)
 parser = DemoParser("./demos/demo1.dem")
 
+
+csv_data = []
+
 df = parser.parse_event("player_death", player=["last_place_name", "team_name"], other=["total_rounds_played", "is_warmup_period"])
 # filter out team-kills and warmup
 print(df.columns)
@@ -92,15 +95,25 @@ print(filter_filtered_df(filterd_df_new, suspect= suspect))
 player_hurt_events = parser.parse_event("player_hurt")
 df_aim  = parser.parse_ticks(["pitch", "yaw"])
 print(df_aim.head())
+
+
+
+
 for (idx, event) in player_hurt_events.iterrows():
     start_tick = event["tick"] - 300
     end_tick = event["tick"]
     attacker = event["attacker_steamid"]
     
-    # attacker can be none when player gets hurt by c4 etc.
+    # 
     if attacker != None:
         subdf = df_aim[(df_aim["tick"].between(start_tick, end_tick)) & (df_aim["name"] == suspect)]
-        print(subdf)
+        # save the data to a file csv to later train my model with
+        f = open("aim.txt", "w")
+        f.write(str(subdf))
+        f.close()
+        
+        
+      
 
 
 
