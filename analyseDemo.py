@@ -1,5 +1,7 @@
 from demoparser2 import DemoParser
+import numpy as np
 import pandas as pd
+
 
 
 #analyse demo for the models
@@ -108,12 +110,30 @@ for (idx, event) in player_hurt_events.iterrows():
     if attacker != None:
         subdf = df_aim[(df_aim["tick"].between(start_tick, end_tick)) & (df_aim["name"] == suspect)]
         # save the data to a file csv to later train my model with
-        f = open("aim.txt", "w")
-        f.write(str(subdf))
-        f.close()
+       # f = open("aim.txt", "w")
+        #f.write(str(subdf))
+        #f.close()
         
-        
+
+# convert the pitch and yaw to a 3d vector
+def pitch_and_yawn_to_vector(subdf):
+    # filter out the pitch and yaw
+    for index, row in subdf.iterrows():
+        pitch = row['pitch']
+        yaw = row['yaw']
+        new_pitch = np.radians(pitch)
+        new_yaw = np.radians(yaw)
+
+        x = np.cos(new_pitch) * np.cos(new_yaw)
+        y = np.cos(new_pitch) * np.sin(new_yaw)
+        z = -np.sin(new_pitch) 
+        #returns a 3d vector
+    return np.array([x, y, z])
+
+
       
+print(pitch_and_yawn_to_vector(subdf))
 
 
 
+# pro player aim vector [ 0.9319481  -0.34341177  0.11636624]

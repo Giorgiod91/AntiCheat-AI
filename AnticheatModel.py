@@ -7,6 +7,17 @@ import numpy as np
 # ideas for some layer ----> ( is the person trying to access memory ? ) ----->   ( simulate memory scanning  )    binary again 1 for Yes  0 for No 
 
 
+
+
+
+
+
+# pro player aim vector [ 0.9319481  -0.34341177  0.11636624]
+aim_vector_pro = [ 0.9319481,  -0.34341177,  0.11636624]
+
+
+
+
 # hardcoded data for now on just to test my model
 HeadshotPercent = ["70","50","40","99","100", "85"]
 kill_count = ["5", "10", "15", "25", "35", "40"]
