@@ -8,7 +8,7 @@ import pandas as pd
 pd.set_option('display.max_rows', 500)
 parser = DemoParser("./demos/demo1.dem")
 
-
+my_function_called = False
 csv_data = []
 
 df = parser.parse_event("player_death", player=["last_place_name", "team_name"], other=["total_rounds_played", "is_warmup_period"])
@@ -106,10 +106,19 @@ def get_headshot_count(df_head, df_total_kills):
     headshot_count = df_head["headshot"].sum()
     total_kills = df_total_kills["total_kills"].sum()
     headshot_percent = (headshot_count / total_kills) * 100
+    my_function_called = True
     return headshot_percent
 
-get_headshot_count(df_head, df_total_kills)
-    
+headshot_count_for_txt = get_headshot_count(df_head, df_total_kills)
+
+def create_txt_file(headshot_count_for_txt):
+    f = open("headshot.txt", "w")
+    f.write(str(headshot_count_for_txt))
+    f.close()
+# if i analysed for headshot count then it should create a file but only then 
+if my_function_called == True:
+    create_txt_file(headshot_count_for_txt)
+   
 
 
 for (idx, event) in player_hurt_events.iterrows():
