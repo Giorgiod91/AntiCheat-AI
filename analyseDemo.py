@@ -78,7 +78,7 @@ def get_suspected_player():
     suspect = input("Enter the name of the suspected player: ")
     return suspect
 
-get_suspected_player()
+
 
 # method to filter the filtered df
 def filter_filtered_df(filterd_df_new , suspect):
@@ -99,8 +99,11 @@ df_aim  = parser.parse_ticks(["pitch", "yaw"])
 print(df_aim.head())
 
 
-df_head = parser.parse_header(["headshot"])
+df_head = parser.parse_header()
 df_total_kills = get_total_kills(df, suspect)
+
+
+print(df_head)
 # meothod to get the headshotCount 
 def get_headshot_count(df_head, df_total_kills):
     headshot_count = df_head["headshot"].sum()
@@ -110,6 +113,7 @@ def get_headshot_count(df_head, df_total_kills):
     return headshot_percent
 
 headshot_count_for_txt = get_headshot_count(df_head, df_total_kills)
+
 
 def create_txt_file(headshot_count_for_txt):
     f = open("headshot.txt", "w")

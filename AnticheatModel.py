@@ -3,11 +3,13 @@ from tensorflow.keras import Sequential
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.losses import BinaryCrossentropy
 import numpy as np
+#import my method from analyseDemo file
+from analyseDemo import get_total_kills
 # add more hidden layers to get more accuracy
 # ideas for some layer ----> ( is the person trying to access memory ? ) ----->   ( simulate memory scanning  )    binary again 1 for Yes  0 for No 
 
-
-
+# using he imported method to get the total kill instead of hard codec value
+kill_count = get_total_kills()
 
 
 
@@ -17,7 +19,23 @@ aim_vector_pro = [ 0.9319481,  -0.34341177,  0.11636624]
 
 # hardcoded data for now on just to test my model
 HeadshotPercent = ["70","50","40","99","100", "85"]
-kill_count = ["5", "10", "15", "25", "35", "40"]
+#kill_count = ["5", "10", "15", "25", "35", "40"]
+
+
+#method to filter headshot % if its really high
+
+def filtered_Headshot(HeadshotPercent, kill_count):
+    filtered_Headshot_percent = []
+    for i in HeadshotPercent:
+        if i >= 70 and kill_count >= 25:
+            filtered_Headshot_percent.append(i)
+
+    return filtered_Headshot_percent
+
+filtered_Headshot(HeadshotPercent=HeadshotPercent, kill_count=kill_count)
+    
+
+
 
 
 y = [0, 0, 0, 1, 1,1]
@@ -66,7 +84,7 @@ print("Predictions (probability of being a cheater):", predictions)
 predictions_binary = (predictions > 0.5).astype(int)
 print("Predictions (binary classification):", predictions_binary)
 
-
+# only for testing with hard coded values
 def get_player_data():
     headshot_numbers = input("Enter headshot%")
     kill_number = input("Enter the kill count")
@@ -76,4 +94,3 @@ def get_player_data():
 
     return headshot_numbers, kill_number
 
-get_player_data()
