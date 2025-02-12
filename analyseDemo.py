@@ -103,16 +103,24 @@ df_head = parser.parse_header()
 df_total_kills = get_total_kills(df, suspect)
 
 
-print(df_head)
+
+# filter out headshots
+
+def filter_headshots(df):
+    for row in df:
+        if "headsthot" in df:
+            print(f"filtered headshots:  {row}")
+
 # meothod to get the headshotCount 
-def get_headshot_count(df_head, df_total_kills):
-    headshot_count = df_head["headshot"].sum()
+def get_headshot_count(df, df_total_kills):
+    headshot_count = df.columns["headshot"].sum()
     total_kills = df_total_kills["total_kills"].sum()
     headshot_percent = (headshot_count / total_kills) * 100
     my_function_called = True
     return headshot_percent
 
 headshot_count_for_txt = get_headshot_count(df_head, df_total_kills)
+print(headshot_count_for_txt)
 
 
 def create_txt_file(headshot_count_for_txt):

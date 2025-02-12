@@ -14,7 +14,7 @@ kill_count = get_total_kills()
 
 
 
-# pro player aim vector [ 0.9319481  -0.34341177  0.11636624]
+# pro player aim vector [ 0.9319481  -0.34341177  0.11636624] i extracted from the demos i picked the current best player to be my top point anything above this reaction time is gonna be weird
 aim_vector_pro = [ 0.9319481,  -0.34341177,  0.11636624]
 
 # hardcoded data for now on just to test my model
@@ -33,6 +33,7 @@ def filtered_Headshot(HeadshotPercent, kill_count):
     return filtered_Headshot_percent
 
 filtered_Headshot(HeadshotPercent=HeadshotPercent, kill_count=kill_count)
+print(filtered_Headshot)
     
 
 
@@ -50,14 +51,10 @@ print(f"shape of killcount: {y.shape}")
 
 # Define the model
 model = Sequential()
-
 # input and hidden layer with the default ReLU activation
 model.add(Dense(units=10, activation='relu', input_dim=5))  
 
-
 model.add(Dense(units=5, activation='relu'))  
-
-
 
 # outout layer with sigmoid activations since its a binarz classification
 model.add(Dense(units=1, activation='sigmoid'))
