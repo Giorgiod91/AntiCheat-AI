@@ -5,11 +5,12 @@ from tensorflow.keras.losses import BinaryCrossentropy
 import numpy as np
 #import my method from analyseDemo file
 from analyseDemo import get_total_kills
+from analyseDemo import donk_kills
 # add more hidden layers to get more accuracy
 # ideas for some layer ----> ( is the person trying to access memory ? ) ----->   ( simulate memory scanning  )    binary again 1 for Yes  0 for No 
 
 # using he imported method to get the total kill instead of hard codec value
-kill_count = get_total_kills()
+kill_count = donk_kills
 
 
 
@@ -58,7 +59,6 @@ model.add(Dense(units=5, activation='relu'))
 
 # outout layer with sigmoid activations since its a binarz classification
 model.add(Dense(units=1, activation='sigmoid'))
-
 
 
 # Compile the model 

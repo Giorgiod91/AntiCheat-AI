@@ -106,6 +106,7 @@ df_total_kills = get_total_kills(df, suspect)
 
 # filter out headshots
 
+
 def filter_headshots(df):
     for row in df:
         if "headsthot" in df:
