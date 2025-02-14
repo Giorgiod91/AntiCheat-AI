@@ -23,6 +23,8 @@ HeadshotPercent = ["70","50","40","99","100", "85"]
 #kill_count = ["5", "10", "15", "25", "35", "40"]
 
 
+
+
 #method to filter headshot % if its really high
 
 def filtered_Headshot(HeadshotPercent, kill_count):

@@ -6,7 +6,8 @@ import pandas as pd
 
 #analyse demo for the models
 pd.set_option('display.max_rows', 500)
-parser = DemoParser("./demos/demo1.dem")
+parser = DemoParser("./demos/demo2.dem")
+
 
 my_function_called = False
 csv_data = []
@@ -120,8 +121,8 @@ def get_headshot_count(df, df_total_kills):
     my_function_called = True
     return headshot_percent
 
-headshot_count_for_txt = get_headshot_count(df_head, df_total_kills)
-print(headshot_count_for_txt)
+#headshot_count_for_txt = get_headshot_count(df_head, df_total_kills)
+
 
 
 def create_txt_file(headshot_count_for_txt):
@@ -129,8 +130,8 @@ def create_txt_file(headshot_count_for_txt):
     f.write(str(headshot_count_for_txt))
     f.close()
 # if i analysed for headshot count then it should create a file but only then 
-if my_function_called == True:
-    create_txt_file(headshot_count_for_txt)
+#if my_function_called == True:
+ #   create_txt_file(headshot_count_for_txt)
    
 
 

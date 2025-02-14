@@ -18,3 +18,5 @@ creating methods to access player name from the demo video then i will extract t
 - Tick: he server tick at which the aim data was recorded.
 
 -------> convert this into a 3d Vektor to analyse
+
+#Getting demos from Cheater to compare the reaction time vector with the pro player ones and see the difference
