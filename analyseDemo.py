@@ -14,6 +14,7 @@ csv_data = []
 
 df = parser.parse_event("player_death", player=["last_place_name", "team_name"], other=["total_rounds_played", "is_warmup_period"])
 # filter out team-kills and warmup
+print(df)
 print(df.columns)
 print(df.head())
 df = df[df["attacker_team_name"] != df["user_team_name"]]
@@ -74,6 +75,32 @@ filterd_df = ["kills_total"]
 filterd_df_new = parser.parse_ticks(filterd_df, ticks=[max_tick])
 print(filterd_df_new)
 
+
+#crosshaircode filter cause ppl want that
+last_tick = parser.parse_event("round_end")["tick"].to_list()[-1]
+crosshair = parser.parse_ticks(["crosshair_code"], ticks=[last_tick])
+print(crosshair)
+
+
+
+
+# method for user to get the crosshair from a player
+
+
+# players allways want the crosshaircode from pro players 
+
+def get_Crosshair(df, name, crosshair):
+
+    for crosshairs in crosshair:
+        print(f"name : {name} and there the crosshair {crosshairs}")
+    
+
+get_Crosshair(df, name="donk", crosshair=crosshair)
+
+
+
+
+
 # method to get the suspected player
 def get_suspected_player():
     suspect = input("Enter the name of the suspected player: ")
@@ -102,6 +129,8 @@ print(df_aim.head())
 
 df_head = parser.parse_header()
 df_total_kills = get_total_kills(df, suspect)
+
+
 
 
 
@@ -147,8 +176,11 @@ for (idx, event) in player_hurt_events.iterrows():
        # f = open("aim.txt", "w")
         #f.write(str(subdf))
         #f.close()
-        
 
+
+
+        
+#get_Crosshair(df=df, player_name=get_suspected_player)
 # convert the pitch and yaw to a 3d vector
 def pitch_and_yawn_to_vector(subdf):
     # filter out the pitch and yaw
@@ -166,8 +198,8 @@ def pitch_and_yawn_to_vector(subdf):
 
 
       
-print(pitch_and_yawn_to_vector(subdf))
+#print(pitch_and_yawn_to_vector(subdf))
 
 
 
-# pro player aim vector [ 0.9319481  -0.34341177  0.11636624]
+# pro player aim vector [ 0.9319481  -0.34341177  0.11636624] [-0.66405502 -0.74712906  0.02879411]

@@ -14,7 +14,7 @@ kill_count = donk_kills
 
 
 
-
+# aim vector pro [-0.66405502 -0.74712906  0.02879411]  best player demo2
 # pro player aim vector [ 0.9319481  -0.34341177  0.11636624] i extracted from the demos i picked the current best player to be my top point anything above this reaction time is gonna be weird
 aim_vector_pro = [ 0.9319481,  -0.34341177,  0.11636624]
 
