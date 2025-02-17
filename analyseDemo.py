@@ -6,7 +6,7 @@ import pandas as pd
 
 #analyse demo for the models
 pd.set_option('display.max_rows', 500)
-parser = DemoParser("./demos/demo2.dem")
+parser = DemoParser("./demos/cheater1.dem")
 
 
 my_function_called = False
