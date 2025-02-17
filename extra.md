@@ -20,3 +20,8 @@ creating methods to access player name from the demo video then i will extract t
 -------> convert this into a 3d Vektor to analyse
 
 #Getting demos from Cheater to compare the reaction time vector with the pro player ones and see the difference
+
+#Ideas to detect visual cheats like radar hack or wallhack
+
+- i will extract the demos and will set specific points in all of the maps to check if player walk pass these without checking corners
+- i could check if someone only has good crosshairplacement if someone is near the suspect
