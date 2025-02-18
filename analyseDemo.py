@@ -198,8 +198,11 @@ def pitch_and_yawn_to_vector(subdf):
 
 
       
-#print(pitch_and_yawn_to_vector(subdf))
+print(pitch_and_yawn_to_vector(subdf))
 
 
 
 # pro player aim vector [ 0.9319481  -0.34341177  0.11636624] [-0.66405502 -0.74712906  0.02879411]
+
+
+# aim vector cheater 1  [ 0.24296004 -0.95349888 -0.17835445]
