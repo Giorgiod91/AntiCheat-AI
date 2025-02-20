@@ -46,7 +46,7 @@ filtered_values = filtered_Headshot(HeadshotPercent, kill_count)
 
 
 
-
+# the model will now work with one x feature atm for testing purpose
 
 # those x features i picked are the key factors to detect unfair gameplay(cheating)
 X_cheater = np.hstack([
@@ -89,11 +89,12 @@ model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy']
 # Train the model
 model.fit(X, y, epochs=100)
 
-
+#::TODO: add a real 3d vector from a demo to test !
 # Make predictions on new data
-try_data = (82, 29)
+new_aim_vector = np.array([0.85, -0.35, 0.1]) 
+
 # reshape into 2D array
-try_data_reshaped  = np.array(try_data).reshape(1, -1)
+try_data_reshaped  = np.array(new_aim_vector).reshape(1, -1)
 predictions = model.predict(try_data_reshaped)
 
 # Display predictions
