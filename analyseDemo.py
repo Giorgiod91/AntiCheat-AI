@@ -183,6 +183,7 @@ for (idx, event) in player_hurt_events.iterrows():
 #get_Crosshair(df=df, player_name=get_suspected_player)
 # convert the pitch and yaw to a 3d vector
 def pitch_and_yawn_to_vector(subdf):
+    vectors = []
     # filter out the pitch and yaw
     for index, row in subdf.iterrows():
         pitch = row['pitch']
@@ -194,11 +195,14 @@ def pitch_and_yawn_to_vector(subdf):
         y = np.cos(new_pitch) * np.sin(new_yaw)
         z = -np.sin(new_pitch) 
         #returns a 3d vector
-    return np.array([x, y, z])
+
+        vectors.append([x,y,z])
+    return np.array(vectors)
 
 
-      
-print(pitch_and_yawn_to_vector(subdf))
+aim_vector_cheater = list(pitch_and_yawn_to_vector(subdf))
+
+#compute aim vectors of a player
 
 
 
@@ -206,3 +210,19 @@ print(pitch_and_yawn_to_vector(subdf))
 
 
 # aim vector cheater 1  [ 0.24296004 -0.95349888 -0.17835445]
+
+vector_pro = np.array([
+    [0.9319481, -0.34341177, 0.11636624],
+    [-0.66405502, -0.74712906, 0.02879411]
+])
+
+vector_cheat = np.array([
+    [ 0.24296004 -0.95349888 -0.17835445]
+])
+
+# compare them now 
+
+def compare_cheat_with_legit_aim_vector(vector_pro, vector_cheat):
+
+
+    return 1

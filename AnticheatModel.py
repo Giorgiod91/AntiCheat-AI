@@ -6,6 +6,8 @@ import numpy as np
 #import my method from analyseDemo file
 from analyseDemo import get_total_kills
 from analyseDemo import donk_kills
+#import the vectors i need for my model
+from analyseDemo import aim_vector_cheater
 # add more hidden layers to get more accuracy
 # ideas for some layer ----> ( is the person trying to access memory ? ) ----->   ( simulate memory scanning  )    binary again 1 for Yes  0 for No 
 
@@ -16,7 +18,10 @@ kill_count = donk_kills
 
 # aim vector pro [-0.66405502 -0.74712906  0.02879411]  best player demo2
 # pro player aim vector [ 0.9319481  -0.34341177  0.11636624] i extracted from the demos i picked the current best player to be my top point anything above this reaction time is gonna be weird
-aim_vector_pro = [ 0.9319481,  -0.34341177,  0.11636624]
+aim_vector_pro = np.array(
+    ) 
+
+aim_vector_cheater = np.array()
 
 # hardcoded data for now on just to test my model
 HeadshotPercent = ["70","50","40","99","100", "85"]
@@ -29,27 +34,42 @@ HeadshotPercent = ["70","50","40","99","100", "85"]
 
 def filtered_Headshot(HeadshotPercent, kill_count):
     filtered_Headshot_percent = []
-    for i in HeadshotPercent:
+    #convert string to int
+    for i in map(int, HeadshotPercent):
         if i >= 70 and kill_count >= 25:
             filtered_Headshot_percent.append(i)
 
     return filtered_Headshot_percent
 
-filtered_Headshot(HeadshotPercent=HeadshotPercent, kill_count=kill_count)
-print(filtered_Headshot)
+filtered_values = filtered_Headshot(HeadshotPercent, kill_count)
     
 
 
 
 
-y = [0, 0, 0, 1, 1,1]
-X = np.array(list(zip(HeadshotPercent, kill_count)),dtype=np.int32)
-y = np.array(y)
+
+# those x features i picked are the key factors to detect unfair gameplay(cheating)
+X_cheater = np.hstack([
+    
+    aim_vector_cheater  # 3D aim vector (X, Y, Z)
+])
+X_pro = np.hstack([
+    
+    aim_vector_pro  # 3D aim vector (X, Y, Z)
+])
+
+#combine cheater and pro data
+X = np.vstack([X_cheater, X_pro])
+# Create Labels (0 = Pro, 1 = Cheater)
+y_cheater = np.ones(len(X_cheater))  # Cheaters → 1
+y_pro = np.zeros(len(X_pro))  # Pros → 0
+
+y = np.hstack([y_cheater, y_pro])  # Combine labels
 
 
 
-print(f"shape of headshotpercent: {X.shape}")
-print(f"shape of killcount: {y.shape}")
+#print(f"shape of headshotpercent: {X.shape}")
+#print(f"shape of killcount: {y.shape}")
 
 
 # Define the model
