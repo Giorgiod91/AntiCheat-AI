@@ -222,7 +222,13 @@ vector_cheat = np.array([
 
 # compare them now 
 
-def compare_cheat_with_legit_aim_vector(vector_pro, vector_cheat):
+def compare_cheat_with_legit_aim_vector_lenght(vector,vector_pro, vector_cheat):
+    norm_vector = np.linalg.norm(vector)
+    norm_cheat = np.linalg.norm(vector_cheat)
+    norm_pro = np.linalg.norm(vector_pro)
 
+    if norm_cheat > norm_pro:
+        print(f"Cheater's aim vector is longer ({norm_cheat}) than pro's ({norm_pro})")
+    else:
+        print(f"Pro's aim vector is longer ({norm_pro}) than cheater's ({norm_cheat})")
 
-    return 1
