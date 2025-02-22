@@ -3,10 +3,9 @@ import numpy as np
 import pandas as pd
 
 
-
 #analyse demo for the models
 pd.set_option('display.max_rows', 500)
-parser = DemoParser("./demo_model.dem")
+parser = DemoParser("./demos/demo_model.dem")
 
 
 my_function_called = False
@@ -26,23 +25,15 @@ df = df.groupby(["total_rounds_played","attacker_name"]).size().to_frame(name='t
 def get_row(df):
     for row in df:
         print(row)
+        
 
-
-
-
-
-
-
-# knowign the rows now i can access the one that give me the player
+# knowing the rows now i can access the one that give me the player
 def get_Player(df, user_name):
     if user_name in df['user_name'].values:
         return df[df['user_name'] == user_name]
     else:
         print(f"Error: Could not find {user_name} in the DataFrame.")
         return None
-
-
-
 
 
 def get_total_kills(df ,player_name):
@@ -63,7 +54,6 @@ def get_total_kills(df ,player_name):
     return total_kills
 
 #playing around with visualizing the data
-
 donk_kills = get_total_kills(df, "donk")
 print(donk_kills)
 total_kills_sum = donk_kills["total_kills"].sum()
@@ -82,13 +72,9 @@ crosshair = parser.parse_ticks(["crosshair_code"], ticks=[last_tick])
 print(crosshair)
 
 
-
-
 # method for user to get the crosshair from a player
 
-
 # players allways want the crosshaircode from pro players 
-
 def get_Crosshair(df, name, crosshair):
 
     for crosshairs in crosshair:
@@ -135,8 +121,6 @@ df_total_kills = get_total_kills(df, suspect)
 
 
 # filter out headshots
-
-
 def filter_headshots(df):
     for row in df:
         if "headsthot" in df:

@@ -89,7 +89,7 @@ model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy']
 # Train the model
 model.fit(X, y, epochs=100)
 
-#::TODO: add a real 3d vector from a demo to test !
+
 # Make predictions on new data
 new_aim_vector = np.array() 
 
