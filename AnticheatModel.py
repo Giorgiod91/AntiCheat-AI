@@ -91,7 +91,7 @@ model.fit(X, y, epochs=100)
 
 #::TODO: add a real 3d vector from a demo to test !
 # Make predictions on new data
-new_aim_vector = np.array([0.85, -0.35, 0.1]) 
+new_aim_vector = np.array() 
 
 # reshape into 2D array
 try_data_reshaped  = np.array(new_aim_vector).reshape(1, -1)

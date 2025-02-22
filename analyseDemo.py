@@ -6,7 +6,7 @@ import pandas as pd
 
 #analyse demo for the models
 pd.set_option('display.max_rows', 500)
-parser = DemoParser("./demos/cheater1.dem")
+parser = DemoParser("./demo_model.dem")
 
 
 my_function_called = False
@@ -199,8 +199,8 @@ def pitch_and_yawn_to_vector(subdf):
         vectors.append([x,y,z])
     return np.array(vectors)
 
-
-aim_vector_cheater = list(pitch_and_yawn_to_vector(subdf))
+new_aim_vector = pitch_and_yawn_to_vector(subdf)
+# aim_vector_cheater = list(pitch_and_yawn_to_vector(subdf))
 
 #compute aim vectors of a player
 
@@ -220,7 +220,7 @@ vector_cheat = np.array([
     [ 0.24296004 -0.95349888 -0.17835445]
 ])
 
-# compare them now 
+# compare them now for the length they have to be same length to work in my model
 
 def compare_cheat_with_legit_aim_vector_lenght(vector,vector_pro, vector_cheat):
     norm_vector = np.linalg.norm(vector)
