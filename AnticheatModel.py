@@ -38,7 +38,7 @@ def aim_reaction_the_same(kills):
     ms = time.time_ns() // 1_000_000
     pro_reaction_time = random.randint(150, 200)
 
-    if suspect_reaction_time > pro_reaction_time:
+    if suspect_reaction_time < pro_reaction_time:
         print(f"suspicious")
 
 
