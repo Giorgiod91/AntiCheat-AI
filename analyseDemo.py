@@ -186,26 +186,10 @@ def pitch_and_yawn_to_vector(subdf):
 
         vectors.append([x,y,z])
     return np.array(vectors)
-print(pitch_and_yawn_to_vector(subdf))
-# aim_vector_cheater = list(pitch_and_yawn_to_vector(subdf))
-
-#compute aim vectors of a player
 
 
 
-# pro player aim vector [ 0.9319481  -0.34341177  0.11636624] [-0.66405502 -0.74712906  0.02879411]
 
-
-# aim vector cheater 1  [ 0.24296004 -0.95349888 -0.17835445]
-
-vector_pro = np.array([
-    [0.9319481, -0.34341177, 0.11636624],
-    [-0.66405502, -0.74712906, 0.02879411]
-])
-
-vector_cheat = np.array([
-    [ 0.24296004 -0.95349888 -0.17835445]
-])
 if "m0NESY" in subdf:
     new_aim_vector = pitch_and_yawn_to_vector(subdf)
 elif "donk" in subdf:
