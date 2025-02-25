@@ -206,10 +206,12 @@ vector_pro = np.array([
 vector_cheat = np.array([
     [ 0.24296004 -0.95349888 -0.17835445]
 ])
-
-new_aim_vector = np.array([
-
-])
+if "m0NESY" in subdf:
+    new_aim_vector = pitch_and_yawn_to_vector(subdf)
+elif "donk" in subdf:
+    vector_pro = pitch_and_yawn_to_vector(subdf)
+else:
+    vector_cheat = pitch_and_yawn_to_vector(subdf)
 
 # compare them now for the length they have to be same length to work in my model
 
