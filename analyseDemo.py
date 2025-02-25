@@ -5,13 +5,17 @@ import pandas as pd
 
 #analyse demo for the models
 pd.set_option('display.max_rows', 500)
-parser = DemoParser("./demos/demo_model.dem")
-
+parser = DemoParser("./demos/try3.dem")
 
 my_function_called = False
 csv_data = []
 
-df = parser.parse_event("player_death", player=["last_place_name", "team_name"], other=["total_rounds_played", "is_warmup_period"])
+df = parser.parse_event("player_death" ,player=["last_place_name", "team_name"], other=["total_rounds_played", "is_warmup_period"])
+
+
+
+
+
 # filter out team-kills and warmup
 print(df)
 print(df.columns)
