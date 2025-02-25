@@ -3,6 +3,8 @@ from tensorflow.keras import Sequential
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.losses import BinaryCrossentropy
 import numpy as np
+import time
+import random
 #import my method from analyseDemo file
 from analyseDemo import get_total_kills
 from analyseDemo import donk_kills
@@ -26,6 +28,22 @@ aim_vector_cheater = np.array()
 # hardcoded data for now on just to test my model
 HeadshotPercent = ["70","50","40","99","100", "85"]
 #kill_count = ["5", "10", "15", "25", "35", "40"]
+
+
+#method to check if the kill is allways in  the same time ms 
+
+def aim_reaction_the_same(kills):
+    #milisecond
+    suspect_reaction_time =0
+    ms = time.time_ns() // 1_000_000
+    pro_reaction_time = random.randint(150, 200)
+
+    if suspect_reaction_time > pro_reaction_time:
+        print(f"suspicious")
+
+
+
+
 
 
 
