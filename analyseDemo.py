@@ -186,8 +186,7 @@ def pitch_and_yawn_to_vector(subdf):
 
         vectors.append([x,y,z])
     return np.array(vectors)
-
-new_aim_vector = pitch_and_yawn_to_vector(subdf)
+print(pitch_and_yawn_to_vector(subdf))
 # aim_vector_cheater = list(pitch_and_yawn_to_vector(subdf))
 
 #compute aim vectors of a player
@@ -208,6 +207,10 @@ vector_cheat = np.array([
     [ 0.24296004 -0.95349888 -0.17835445]
 ])
 
+new_aim_vector = np.array([
+
+])
+
 # compare them now for the length they have to be same length to work in my model
 
 def compare_cheat_with_legit_aim_vector_lenght(vector,vector_pro, vector_cheat):
@@ -220,3 +223,6 @@ def compare_cheat_with_legit_aim_vector_lenght(vector,vector_pro, vector_cheat):
     else:
         print(f"Pro's aim vector is longer ({norm_pro}) than cheater's ({norm_cheat})")
 
+
+
+# if __name__ == "__main__":
