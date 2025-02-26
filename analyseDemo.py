@@ -211,4 +211,10 @@ def compare_cheat_with_legit_aim_vector_lenght(vector,vector_pro, vector_cheat):
 
 
 
+#claculate the distance to get the reaction time from one tick to another
+def  euclidean_distance(v1,v2):
+    return np.linalg.norm(v1-v2)
+
+
+
 # if __name__ == "__main__":

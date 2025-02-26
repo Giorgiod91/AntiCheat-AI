@@ -60,6 +60,9 @@ def filtered_Headshot(HeadshotPercent, kill_count):
     return filtered_Headshot_percent
 
 filtered_values = filtered_Headshot(HeadshotPercent, kill_count)
+
+#def check_all_indications():
+
     
 
 
