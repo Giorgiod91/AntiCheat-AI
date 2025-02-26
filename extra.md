@@ -25,3 +25,5 @@ creating methods to access player name from the demo video then i will extract t
 
 - i will extract the demos and will set specific points in all of the maps to check if player walk pass these without checking corners
 - i could check if someone only has good crosshairplacement if someone is near the suspect
+
+#trying to calc reaction time with the data i have now i have tick, pitch myaw looking for the difference in those vectors from one tick to another to get the reaction time
