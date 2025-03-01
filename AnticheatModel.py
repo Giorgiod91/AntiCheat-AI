@@ -96,7 +96,7 @@ y = np.hstack([y_cheater, y_pro])  # Combine labels
 # Define the model
 model = Sequential()
 # input and hidden layer with the default ReLU activation
-model.add(Dense(units=10, activation='relu', input_dim=5))  
+model.add(Dense(units=10, activation='relu', input_dim=3))  
 
 model.add(Dense(units=5, activation='relu'))  
 

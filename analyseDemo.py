@@ -90,7 +90,6 @@ get_Crosshair(df, name="donk", crosshair=crosshair)
 
 
 
-
 # method to get the suspected player
 def get_suspected_player():
     suspect = input("Enter the name of the suspected player: ")
@@ -119,9 +118,6 @@ print(df_aim.head())
 
 df_head = parser.parse_header()
 df_total_kills = get_total_kills(df, suspect)
-
-
-
 
 
 # filter out headshots
