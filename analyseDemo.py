@@ -213,4 +213,8 @@ def  euclidean_distance(v1,v2):
 
 
 
+
+
+
+
 # if __name__ == "__main__":
