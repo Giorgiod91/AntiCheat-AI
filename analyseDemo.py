@@ -1,38 +1,22 @@
-from demoparser2 import DemoParser
 import numpy as np
 import pandas as pd
-
+from awpy import Demo
 
 #analyse demo for the models
-pd.set_option('display.max_rows', 500)
-parser = DemoParser("./demos/cheaterbanned.dem")
+
+dem = Demo("demos/demo1.dem", verbose=False)
 
 my_function_called = False
 csv_data = []
 
-df = parser.parse_event("player_death" ,player=["last_place_name", "team_name"], other=["total_rounds_played", "is_warmup_period"])
-
-
-
-#::TODO:: https://github.com/pnxenopoulos/awpy/blob/main/docs/examples/parse_demo.ipynb  switch to this parser and create vector also from x y position
-
-# filter out team-kills and warmup
-print(df)
-print(df.columns)
-print(df.head())
-df = df[df["attacker_team_name"] != df["user_team_name"]]
-df = df[df["is_warmup_period"] == False]
-df = df.groupby(["total_rounds_played","attacker_name"]).size().to_frame(name='total_kills').reset_index()
-
-
 # method to print out the rows to then use specific ones i need for my model
-def get_row(df):
-    for row in df:
-        print(row)
+def get_row(dem):
+    for row in dem:
+        print(dem)
         
 
 # knowing the rows now i can access the one that give me the player
-def get_Player(df, user_name):
+def get_Player(dem, user_name):
     if user_name in df['user_name'].values:
         return df[df['user_name'] == user_name]
     else:
@@ -40,7 +24,7 @@ def get_Player(df, user_name):
         return None
 
 
-def get_total_kills(df ,player_name):
+#def get_total_kills(df ,player_name):
 
     pd.set_option('display.max_rows', 500)
     if "event_type" in df.columns:
@@ -58,36 +42,12 @@ def get_total_kills(df ,player_name):
     return total_kills
 
 #playing around with visualizing the data
-donk_kills = get_total_kills(df, "donk")
-print(donk_kills)
-total_kills_sum = donk_kills["total_kills"].sum()
-print(f"Total kills by donk: {total_kills_sum}")
 
-# get the scoreboiard
-max_tick = parser.parse_event("round_end")["tick"].max()
-filterd_df = ["kills_total"]
-filterd_df_new = parser.parse_ticks(filterd_df, ticks=[max_tick])
-print(filterd_df_new)
-
-
-#crosshaircode filter cause ppl want that
-last_tick = parser.parse_event("round_end")["tick"].to_list()[-1]
-crosshair = parser.parse_ticks(["crosshair_code"], ticks=[last_tick])
-print(crosshair)
 
 
 # method for user to get the crosshair from a player
 
 # players allways want the crosshaircode from pro players 
-def get_Crosshair(df, name, crosshair):
-
-    for crosshairs in crosshair:
-        print(f"name : {name} and there the crosshair {crosshairs}")
-    
-
-get_Crosshair(df, name="donk", crosshair=crosshair)
-
-
 
 
 # method to get the suspected player
@@ -105,20 +65,12 @@ def filter_filtered_df(filterd_df_new , suspect):
             return row
         
 # set the suspect to the player you want to investigate
-suspect = get_suspected_player()
-print(filter_filtered_df(filterd_df_new, suspect= suspect))
+
+
 
 
 
 # analyse aim of the player 
-player_hurt_events = parser.parse_event("player_hurt")
-df_aim  = parser.parse_ticks(["pitch", "yaw"])
-print(df_aim.head())
-
-
-df_head = parser.parse_header()
-df_total_kills = get_total_kills(df, suspect)
-
 
 # filter out headshots
 def filter_headshots(df):
@@ -166,10 +118,11 @@ for (idx, event) in player_hurt_events.iterrows():
         
 #get_Crosshair(df=df, player_name=get_suspected_player)
 # convert the pitch and yaw to a 3d vector
-def pitch_and_yawn_to_vector(subdf):
+def pitch_and_yaw_to_vector(subdf):
     vectors = []
     # filter out the pitch and yaw
     for index, row in subdf.iterrows():
+        # pitch -90 means looking straight down +90 means looking  straight up
         pitch = row['pitch']
         yaw = row['yaw']
         new_pitch = np.radians(pitch)
@@ -177,7 +130,7 @@ def pitch_and_yawn_to_vector(subdf):
 
         x = np.cos(new_pitch) * np.cos(new_yaw)
         y = np.cos(new_pitch) * np.sin(new_yaw)
-        z = -np.sin(new_pitch) 
+        z = np.sin(new_pitch) 
         #returns a 3d vector
 
         vectors.append([x,y,z])
@@ -187,11 +140,11 @@ def pitch_and_yawn_to_vector(subdf):
 
 
 if "m0NESY" in subdf:
-    new_aim_vector = pitch_and_yawn_to_vector(subdf)
+    new_aim_vector = pitch_and_yaw_to_vector(subdf)
 elif "donk" in subdf:
-    vector_pro = pitch_and_yawn_to_vector(subdf)
+    vector_pro = pitch_and_yaw_to_vector(subdf)
 else:
-    vector_cheat = pitch_and_yawn_to_vector(subdf)
+    vector_cheat = pitch_and_yaw_to_vector(subdf)
 
 # compare them now for the length they have to be same length to work in my model
 
