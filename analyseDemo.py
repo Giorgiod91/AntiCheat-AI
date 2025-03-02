@@ -5,7 +5,7 @@ import pandas as pd
 
 #analyse demo for the models
 pd.set_option('display.max_rows', 500)
-parser = DemoParser("./demos/try3.dem")
+parser = DemoParser("./demos/cheaterbanned.dem")
 
 my_function_called = False
 csv_data = []
@@ -14,7 +14,7 @@ df = parser.parse_event("player_death" ,player=["last_place_name", "team_name"],
 
 
 
-
+#::TODO:: https://github.com/pnxenopoulos/awpy/blob/main/docs/examples/parse_demo.ipynb  switch to this parser and create vector also from x y position
 
 # filter out team-kills and warmup
 print(df)
