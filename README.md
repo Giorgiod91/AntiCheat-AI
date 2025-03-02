@@ -35,8 +35,7 @@ One of the future plans for this project is to implement **corner-checking** det
 - **Scikit-learn**: The library I’m using to experiment with machine learning techniques to detect patterns.
 - **NumPy**: For efficient handling of numerical data.
 - **Matplotlib/Seaborn**: Used for visualizing the data and analyzing trends.
-- **DemoParser**: A Python module for parsing game demo files to extract player actions and events.
-
+- **DemoParser**: Awpy to analyse data
 ---
 
 
