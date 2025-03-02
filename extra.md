@@ -27,3 +27,5 @@ creating methods to access player name from the demo video then i will extract t
 - i could check if someone only has good crosshairplacement if someone is near the suspect
 
 #trying to calc reaction time with the data i have now i have tick, pitch myaw looking for the difference in those vectors from one tick to another to get the reaction time
+
+#refactoring all the anaylse file cause i switched to awpy parser that also works on faceit and there are many banned cheater that i can use as a reference
