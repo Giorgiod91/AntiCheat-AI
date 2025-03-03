@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 from awpy import Demo
-
+# link i use https://github.com/pnxenopoulos/awpy/blob/main/docs/examples/parse_demo.ipynb
 #analyse demo for the models
 
 dem = Demo("demos/demo1.dem", verbose=False)
@@ -9,37 +9,34 @@ dem = Demo("demos/demo1.dem", verbose=False)
 my_function_called = False
 csv_data = []
 
-# method to print out the rows to then use specific ones i need for my model
-def get_row(dem):
-    for row in dem:
-        print(dem)
-        
+data_1 = dem.weapon_fires
+#converting to dataFrame
+df = pd.DataFrame(data_1)
+df_kills = pd.DataFrame(dem.kills)
+print(df_kills)
 
+# method to print out the rows to then use specific ones i need for my model
+def get_row(df):
+    for row in df:
+        pd.set_option('display.max_rows', 20)
+        print(df)
+        
+# filter for specific player i need now hard coded later will be based on input
+player_name = "donk"
 # knowing the rows now i can access the one that give me the player
-def get_Player(dem, user_name):
-    if user_name in df['user_name'].values:
-        return df[df['user_name'] == user_name]
+if "player_name" in df.columns:
+    player_data = df[df["player_name"] == player_name]
+    if not player_data.empty:
+        print(player_data)  
     else:
-        print(f"Error: Could not find {user_name} in the DataFrame.")
-        return None
+        print(f"Error: Could not find {player_name} in the DataFrame.")
+else:
+    print("Error: Column 'player_name' not found in the DataFrame.")
+
+
 
 
 #def get_total_kills(df ,player_name):
-
-    pd.set_option('display.max_rows', 500)
-    if "event_type" in df.columns:
-        df = df[df["event_type"] == "kill"]
-       
-
-    total_kills = (
-         df[df['attacker_name'] == player_name]   # Filter for the specific user 
-        .groupby(["total_rounds_played",  "attacker_name", ])  # Group by rounds played
-        .size()  
-        .to_frame(name="total_kills")  # Convert to DataFrame
-        .reset_index()  # Reset index for cleaner output
-    )
-
-    return total_kills
 
 #playing around with visualizing the data
 
@@ -99,29 +96,13 @@ def create_txt_file(headshot_count_for_txt):
  #   create_txt_file(headshot_count_for_txt)
    
 
-
-for (idx, event) in player_hurt_events.iterrows():
-    start_tick = event["tick"] - 300
-    end_tick = event["tick"]
-    attacker = event["attacker_steamid"]
-    
-    # 
-    if attacker != None:
-        subdf = df_aim[(df_aim["tick"].between(start_tick, end_tick)) & (df_aim["name"] == suspect)]
-        # save the data to a file csv to later train my model with
-       # f = open("aim.txt", "w")
-        #f.write(str(subdf))
-        #f.close()
-
-
-
         
 #get_Crosshair(df=df, player_name=get_suspected_player)
 # convert the pitch and yaw to a 3d vector
-def pitch_and_yaw_to_vector(subdf):
+def pitch_and_yaw_to_vector(dem):
     vectors = []
     # filter out the pitch and yaw
-    for index, row in subdf.iterrows():
+    for index, row in dem.iterrows():
         # pitch -90 means looking straight down +90 means looking  straight up
         pitch = row['pitch']
         yaw = row['yaw']
@@ -139,12 +120,12 @@ def pitch_and_yaw_to_vector(subdf):
 
 
 
-if "m0NESY" in subdf:
-    new_aim_vector = pitch_and_yaw_to_vector(subdf)
-elif "donk" in subdf:
-    vector_pro = pitch_and_yaw_to_vector(subdf)
-else:
-    vector_cheat = pitch_and_yaw_to_vector(subdf)
+#if "m0NESY" in dem:
+ #   new_aim_vector = pitch_and_yaw_to_vector(dem)
+#elif "donk" in dem:
+ #   vector_pro = pitch_and_yaw_to_vector(dem)
+#else:
+ #   vector_cheat = pitch_and_yaw_to_vector(dem)
 
 # compare them now for the length they have to be same length to work in my model
 

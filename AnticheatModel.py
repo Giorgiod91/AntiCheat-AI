@@ -45,9 +45,6 @@ def aim_reaction_the_same(kills):
 
 
 
-
-
-
 #method to filter headshot % if its really high
 
 def filtered_Headshot(HeadshotPercent, kill_count):
@@ -109,8 +106,6 @@ model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy']
 
 # Train the model
 model.fit(X, y, epochs=100)
-
-
 # Make predictions on new data
 new_aim_vector = np.array() 
 
