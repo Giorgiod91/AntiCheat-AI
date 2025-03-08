@@ -145,6 +145,29 @@ def  euclidean_distance(v1,v2):
 
 
 
+# get player positions on wepaon fires for now on later switch up
+def get_player_position(data_1):
+    name = input("enter a player name")
+
+    for row in data_1:
+        if name in data_1:
+            if player_X and player_Y in data_1:
+
+                return player_X , player_Y
+        
+
+
+            
+
+    
+
+
+
+    
+
+
+
+
 
 
 
