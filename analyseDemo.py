@@ -168,8 +168,12 @@ print(get_player_position(data_1))
 
 #track overlap of player postion and heatmap fields
 def overlap_player_heatmap_point(player_X, player_Y):
+    heatmap_X = ["red"]
     if player_X == heatmap_X:
         print("Player stepped on field {heatmap_X}")
+        heatmap_X = ["green"]
+        heatmap_X = ["red"]
+       
 
     
 
