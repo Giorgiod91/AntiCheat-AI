@@ -44,6 +44,9 @@ One of the future plans for this project is to implement **corner-checking** det
 - In building this project, I applied concepts from Andrew Ng’s Machine Learning course, particularly on data transformation and feature engineering. For example, I transformed pitch and yaw data into 3D vectors, which are then used as features for training machine learning models to detect cheating
 
 
+#trying out to use heatmaps
+![image](https://github.com/user-attachments/assets/0fce2978-5bb0-43d9-9b77-f2d8accecff9)
+
 
 
 
