@@ -115,7 +115,7 @@ def pitch_and_yaw_to_vector(data):
         vectors.append([x,y,z])
     return np.array(vectors)
 
-print(vector_pro = pitch_and_yaw_to_vector(data=data_1))
+#print(vector_pro = pitch_and_yaw_to_vector(data=data_1))
 
 
 #if "m0NESY" in dem:
@@ -148,16 +148,28 @@ def  euclidean_distance(v1,v2):
 # get player positions on wepaon fires for now on later switch up
 def get_player_position(data_1):
     name = input("enter a player name")
+    player_X = 0
+    player_Y = 0
 
     for row in data_1:
         if name in data_1:
             if player_X and player_Y in data_1:
+                print(player_X)
+                print(player_Y)
 
                 return player_X , player_Y
+        else:
+            print("player name not found !")
         
 
+print(get_player_position(data_1))
 
-            
+
+
+#track overlap of player postion and heatmap fields
+def overlap_player_heatmap_point(player_X, player_Y):
+    if player_X == heatmap_X:
+        print("Player stepped on field {heatmap_X}")
 
     
 
