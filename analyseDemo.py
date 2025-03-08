@@ -34,8 +34,6 @@ else:
     print("Error: Column 'player_name' not found in the DataFrame.")
 
 
-
-
 #def get_total_kills(df ,player_name):
 
 #playing around with visualizing the data
@@ -99,10 +97,10 @@ def create_txt_file(headshot_count_for_txt):
         
 #get_Crosshair(df=df, player_name=get_suspected_player)
 # convert the pitch and yaw to a 3d vector
-def pitch_and_yaw_to_vector(dem):
+def pitch_and_yaw_to_vector(data):
     vectors = []
     # filter out the pitch and yaw
-    for index, row in dem.iterrows():
+    for index, row in data.iterrows():
         # pitch -90 means looking straight down +90 means looking  straight up
         pitch = row['pitch']
         yaw = row['yaw']
@@ -117,7 +115,7 @@ def pitch_and_yaw_to_vector(dem):
         vectors.append([x,y,z])
     return np.array(vectors)
 
-
+print(vector_pro = pitch_and_yaw_to_vector(data=data_1))
 
 
 #if "m0NESY" in dem:
