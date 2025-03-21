@@ -3,8 +3,29 @@ import pandas as pd
 from awpy import Demo
 # link i use https://github.com/pnxenopoulos/awpy/blob/main/docs/examples/parse_demo.ipynb
 #analyse demo for the models
+from demoparser2 import DemoParser
 
 dem = Demo("demos/demo1.dem", verbose=False)
+
+
+
+
+
+parser = DemoParser("demos/demo1.dem")
+last_tick = parser.parse_event("round_end")["tick"].to_list()[-1]
+df = parser.parse_ticks(["crosshair_code"],ticks=[last_tick])
+print(df)
+
+df_for_aim = parser.parse_ticks(["pitch", "yaw"])
+
+
+
+#df_for_player_position = parser.parse_event(player=["X", "Y"])
+
+
+
+
+
 
 my_function_called = False
 csv_data = []
@@ -94,13 +115,34 @@ def create_txt_file(headshot_count_for_txt):
  #   create_txt_file(headshot_count_for_txt)
    
 
+suspect = get_suspected_player()
+
+player_hurt_events = parser.parse_event("player_hurt")
+for (idx, event) in player_hurt_events.iterrows():
+     start_tick = event["tick"] - 300
+     end_tick = event["tick"]
+     attacker = event["attacker_steamid"]
+ 
+     # 
+     if attacker != None:
+         subdf = df_for_aim[(df_for_aim["tick"].between(start_tick, end_tick)) & (df_for_aim["name"] == suspect)]
+         # save the data to a file csv to later train my model with
+        # f = open("aim.txt", "w")
+         #f.write(str(subdf))
+         #f.close()
+ 
+
+
+
+
+
         
 #get_Crosshair(df=df, player_name=get_suspected_player)
 # convert the pitch and yaw to a 3d vector
-def pitch_and_yaw_to_vector(data):
+def pitch_and_yaw_to_vector(df_for_aim):
     vectors = []
     # filter out the pitch and yaw
-    for index, row in data.iterrows():
+    for index, row in df_for_aim.iterrows():
         # pitch -90 means looking straight down +90 means looking  straight up
         pitch = row['pitch']
         yaw = row['yaw']
@@ -115,7 +157,7 @@ def pitch_and_yaw_to_vector(data):
         vectors.append([x,y,z])
     return np.array(vectors)
 
-#print(vector_pro = pitch_and_yaw_to_vector(data=data_1))
+print(vector_pro = pitch_and_yaw_to_vector(df_for_aim))
 
 
 #if "m0NESY" in dem:
@@ -145,24 +187,24 @@ def  euclidean_distance(v1,v2):
 
 
 
-# get player positions on wepaon fires for now on later switch up
-def get_player_position(data_1):
-    name = input("enter a player name")
-    player_X = 0
-    player_Y = 0
+# get player positions on weapon fires for now on later switch up
+def get_player_position(df_for_player_position):
+    player_name = input("enter a player name")
+   
+    if player_name in df_for_player_position:    
+                player_data = df_for_player_position[df_for_player_position['player_name'] == player_name]
+                player_X = player_data['X']
+                player_Y = player_data['Y']
 
-    for row in data_1:
-        if name in data_1:
-            if player_X and player_Y in data_1:
                 print(player_X)
                 print(player_Y)
 
                 return player_X , player_Y
-        else:
-            print("player name not found !")
+    else:
+        print("player position not found!")
         
 
-print(get_player_position(data_1))
+print(get_player_position(df_for_player_position))
 
 
 
