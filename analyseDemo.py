@@ -157,7 +157,7 @@ def pitch_and_yaw_to_vector(df_for_aim):
         vectors.append([x,y,z])
     return np.array(vectors)
 
-print(vector_pro = pitch_and_yaw_to_vector(df_for_aim))
+print(pitch_and_yaw_to_vector(df_for_aim))
 
 
 #if "m0NESY" in dem:
@@ -204,7 +204,7 @@ def get_player_position(df_for_player_position):
         print("player position not found!")
         
 
-print(get_player_position(df_for_player_position))
+
 
 
 
