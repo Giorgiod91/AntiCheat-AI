@@ -139,10 +139,10 @@ for (idx, event) in player_hurt_events.iterrows():
         
 #get_Crosshair(df=df, player_name=get_suspected_player)
 # convert the pitch and yaw to a 3d vector
-def pitch_and_yaw_to_vector(df_for_aim):
+def pitch_and_yaw_to_vector(data):
     vectors = []
     # filter out the pitch and yaw
-    for index, row in df_for_aim.iterrows():
+    for index, row in data.iterrows():
         # pitch -90 means looking straight down +90 means looking  straight up
         pitch = row['pitch']
         yaw = row['yaw']
@@ -157,7 +157,7 @@ def pitch_and_yaw_to_vector(df_for_aim):
         vectors.append([x,y,z])
     return np.array(vectors)
 
-print(pitch_and_yaw_to_vector(df_for_aim))
+aim_vector_pro = pitch_and_yaw_to_vector(data=df_for_aim)
 
 
 #if "m0NESY" in dem:

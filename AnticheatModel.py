@@ -6,22 +6,20 @@ import numpy as np
 import time
 import random
 #import my method from analyseDemo file
-from analyseDemo import get_total_kills
-from analyseDemo import donk_kills
+
 #import the vectors i need for my model
-from analyseDemo import aim_vector_cheater
+from analyseDemo import aim_vector_pro
 # add more hidden layers to get more accuracy
 # ideas for some layer ----> ( is the person trying to access memory ? ) ----->   ( simulate memory scanning  )    binary again 1 for Yes  0 for No 
 
 # using he imported method to get the total kill instead of hard codec value
-kill_count = donk_kills
+
 
 
 
 # aim vector pro [-0.66405502 -0.74712906  0.02879411]  best player demo2
 # pro player aim vector [ 0.9319481  -0.34341177  0.11636624] i extracted from the demos i picked the current best player to be my top point anything above this reaction time is gonna be weird
-aim_vector_pro = np.array(
-    ) 
+
 
 aim_vector_cheater = np.array()
 
@@ -56,7 +54,7 @@ def filtered_Headshot(HeadshotPercent, kill_count):
 
     return filtered_Headshot_percent
 
-filtered_values = filtered_Headshot(HeadshotPercent, kill_count)
+
 
 #def check_all_indications():
 
@@ -133,6 +131,4 @@ def get_player_data():
 
 
 #::TODO:: create  false positive method
-
-def false_positive():
 
