@@ -107,6 +107,7 @@ model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy']
 # Train the model
 model.fit(X, y, epochs=3)
 # Make predictions on new data
+predictions = model.predict(new_aim_vector)
 
 print(f"Shape of new_aim_vector: {np.shape(new_aim_vector)}")
 
