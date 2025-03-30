@@ -161,10 +161,12 @@ for (idx, event) in player_hurt_events.iterrows():
 #get_Crosshair(df=df, player_name=get_suspected_player)
 # convert the pitch and yaw to a 3d vector
 def pitch_and_yaw_to_vector(data):
+   
     vectors = []
     # filter out the pitch and yaw
     for index, row in data.iterrows():
         # pitch -90 means looking straight down +90 means looking  straight up
+       
         pitch = row['pitch']
         yaw = row['yaw']
         new_pitch = np.radians(pitch)
@@ -176,6 +178,8 @@ def pitch_and_yaw_to_vector(data):
         #returns a 3d vector
 
         vectors.append([x,y,z])
+    #checking the size
+    #print(len(vectors))
     return np.array(vectors)
 
 aim_vector_pro = pitch_and_yaw_to_vector(data=df_for_aim)

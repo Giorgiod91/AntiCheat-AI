@@ -5,6 +5,7 @@ from tensorflow.keras.losses import BinaryCrossentropy
 import numpy as np
 import time
 import random
+import matplotlib.pyplot as plt
 #import my method from analyseDemo file
 
 #import the vectors i need for my model
@@ -96,7 +97,7 @@ model.add(Dense(units=10, activation='relu', input_dim=3))
 
 model.add(Dense(units=5, activation='relu'))  
 
-# outout layer with sigmoid activations since its a binarz classification
+# outpout layer with sigmoid activations since its a binary classification
 model.add(Dense(units=1, activation='sigmoid'))
 
 
@@ -104,13 +105,11 @@ model.add(Dense(units=1, activation='sigmoid'))
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
 # Train the model
-model.fit(X, y, epochs=10)
+model.fit(X, y, epochs=3)
 # Make predictions on new data
 
+print(f"Shape of new_aim_vector: {np.shape(new_aim_vector)}")
 
-# reshape into 2D array
-try_data_reshaped  = np.array(new_aim_vector).reshape(1, -1)
-predictions = model.predict(try_data_reshaped)
 
 # Display predictions
 print("Predictions (probability of being a cheater):", predictions)
@@ -128,6 +127,35 @@ def get_player_data():
 
 
     return headshot_numbers, kill_number
+
+
+#Plot 
+fig = plt.figure(figsize=(7,5))
+ax = fig.add_subplot(111, projection='3d')  # Create a 3D subplot
+# with : and 0 and 1 and 2 selecting all values from the vectors so its X,Y and z
+
+# plot for cheaters
+ax.scatter(aim_vector_cheater[:, 0], aim_vector_cheater[:, 1], aim_vector_cheater[:, 2], 
+           color='red', label='Cheaters')
+
+# plot for pros
+ax.scatter(aim_vector_pro[:, 0], aim_vector_pro[:, 1], aim_vector_pro[:, 2], 
+           color='blue', label='Pros')
+
+
+# plot the suspect to visualize if person could be cheating
+ax.scatter(new_aim_vector[:,0], new_aim_vector[:,1], new_aim_vector[:,2] , color="green", label="suspect")
+
+ax.set_xlabel("X-axis ")
+ax.set_ylabel("Y-axis ")
+ax.set_zlabel("Z-axis ")
+ax.set_title("3D Aim Vector Comparison")
+plt.legend()
+plt.show()
+
+
+
+
 
 
 
