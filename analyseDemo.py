@@ -18,6 +18,27 @@ print(df)
 
 df_for_aim = parser.parse_ticks(["pitch", "yaw"])
 
+# demo with a  banned cheater
+
+parserTwo = DemoParser("demos/cheater1.dem")
+last_tick = parserTwo.parse_event("round_end")["tick"].to_list()[-1]
+dfTwo = parserTwo.parse_ticks(["crosshair_code"],ticks=[last_tick])
+
+df_for_aim_two = parserTwo.parse_ticks(["pitch", "yaw"])
+
+
+
+
+# get data for a suspect 
+
+parserThree = DemoParser("demos/cheater2.dem")
+last_tick = parserThree.parse_event("round_end")["tick"].to_list()[-1]
+dfTwo = parserThree.parse_ticks(["crosshair_code"],ticks=[last_tick])
+
+df_for_suspect = parserThree.parse_ticks(["pitch", "yaw"])
+
+
+
 
 
 #df_for_player_position = parser.parse_event(player=["X", "Y"])
@@ -160,6 +181,13 @@ def pitch_and_yaw_to_vector(data):
 aim_vector_pro = pitch_and_yaw_to_vector(data=df_for_aim)
 
 
+aim_vector_cheater = pitch_and_yaw_to_vector(data=df_for_aim_two)
+
+
+
+new_aim_vector = pitch_and_yaw_to_vector(data=df_for_suspect)
+
+
 #if "m0NESY" in dem:
  #   new_aim_vector = pitch_and_yaw_to_vector(dem)
 #elif "donk" in dem:
@@ -229,5 +257,10 @@ def overlap_player_heatmap_point(player_X, player_Y):
 
 
 
+if __name__ == "__main__":
+    aim_vector_pro = pitch_and_yaw_to_vector(data=df_for_aim)
 
-# if __name__ == "__main__":
+
+    aim_vector_cheater = pitch_and_yaw_to_vector(data=df_for_aim_two)
+
+    new_aim_vector = pitch_and_yaw_to_vector(data=df_for_suspect)

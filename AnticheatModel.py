@@ -9,6 +9,8 @@ import random
 
 #import the vectors i need for my model
 from analyseDemo import aim_vector_pro
+from analyseDemo import aim_vector_cheater
+from analyseDemo import new_aim_vector
 # add more hidden layers to get more accuracy
 # ideas for some layer ----> ( is the person trying to access memory ? ) ----->   ( simulate memory scanning  )    binary again 1 for Yes  0 for No 
 
@@ -21,7 +23,6 @@ from analyseDemo import aim_vector_pro
 # pro player aim vector [ 0.9319481  -0.34341177  0.11636624] i extracted from the demos i picked the current best player to be my top point anything above this reaction time is gonna be weird
 
 
-aim_vector_cheater = np.array()
 
 # hardcoded data for now on just to test my model
 HeadshotPercent = ["70","50","40","99","100", "85"]
@@ -103,9 +104,9 @@ model.add(Dense(units=1, activation='sigmoid'))
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
 # Train the model
-model.fit(X, y, epochs=100)
+model.fit(X, y, epochs=10)
 # Make predictions on new data
-new_aim_vector = np.array() 
+
 
 # reshape into 2D array
 try_data_reshaped  = np.array(new_aim_vector).reshape(1, -1)
