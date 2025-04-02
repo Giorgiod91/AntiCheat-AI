@@ -109,6 +109,10 @@ model.fit(X, y, epochs=3)
 # Make predictions on new data
 predictions = model.predict(new_aim_vector)
 
+
+
+model.save("AnticheatModel")
+
 print(f"Shape of new_aim_vector: {np.shape(new_aim_vector)}")
 
 
