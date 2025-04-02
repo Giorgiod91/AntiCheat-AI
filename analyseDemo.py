@@ -45,6 +45,13 @@ df_for_suspect = parserThree.parse_ticks(["pitch", "yaw"])
 
 
 
+# suspect analyse
+
+
+
+
+
+
 
 
 
