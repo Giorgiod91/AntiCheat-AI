@@ -31,7 +31,7 @@ df_for_aim_two = parserTwo.parse_ticks(["pitch", "yaw"])
 
 # get data for a suspect 
 
-parserThree = DemoParser("demos/cheaterbanned.dem")
+parserThree = DemoParser("demos/cheater2.dem")
 last_tick = parserThree.parse_event("round_end")["tick"].to_list()[-1]
 dfTwo = parserThree.parse_ticks(["crosshair_code"],ticks=[last_tick])
 

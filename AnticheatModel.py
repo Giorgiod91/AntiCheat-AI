@@ -110,8 +110,8 @@ model.fit(X, y, epochs=3)
 predictions = model.predict(new_aim_vector)
 
 
+# save model to use it in main file app.py for the backend server to later fetch from the frontend
 
-model.save("AnticheatModel")
 
 print(f"Shape of new_aim_vector: {np.shape(new_aim_vector)}")
 
