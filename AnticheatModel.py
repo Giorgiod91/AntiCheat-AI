@@ -93,9 +93,9 @@ y = np.hstack([y_cheater, y_pro])  # Combine labels
 # Define the model
 model = Sequential()
 # input and hidden layer with the default ReLU activation
-model.add(Dense(units=10, activation='relu', input_dim=3))  
-
-model.add(Dense(units=5, activation='relu'))  
+model.add(Dense(units=8, activation='relu', input_dim=3))  
+# hidden layers for later
+#model.add(Dense(units=5, activation='relu'))  
 
 # outpout layer with sigmoid activations since its a binary classification
 model.add(Dense(units=1, activation='sigmoid'))
@@ -105,7 +105,7 @@ model.add(Dense(units=1, activation='sigmoid'))
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
 # Train the model
-model.fit(X, y, epochs=3)
+model.fit(X, y, epochs=10)
 # Make predictions on new data
 predictions = model.predict(new_aim_vector)
 
@@ -121,8 +121,7 @@ print("Predictions (probability of being a cheater):", predictions)
 
 cheater = False
 predictions_binary = (predictions > 0.4).astype(int)
-if predictions_binary > 0.4:
-    print("Predictions (binary classification):", predictions_binary)
+print("Predictions (binary classification):", predictions_binary)
 
 # only for testing with hard coded values
 def get_player_data():
