@@ -119,9 +119,10 @@ print(f"Shape of new_aim_vector: {np.shape(new_aim_vector)}")
 # Display predictions
 print("Predictions (probability of being a cheater):", predictions)
 
-
-predictions_binary = (predictions > 0.5).astype(int)
-print("Predictions (binary classification):", predictions_binary)
+cheater = False
+predictions_binary = (predictions > 0.4).astype(int)
+if predictions_binary > 0.4:
+    print("Predictions (binary classification):", predictions_binary)
 
 # only for testing with hard coded values
 def get_player_data():
