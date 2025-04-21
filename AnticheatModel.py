@@ -6,6 +6,7 @@ import numpy as np
 import time
 import random
 import matplotlib.pyplot as plt
+import torch
 #import my method from analyseDemo file
 
 #import the vectors i need for my model
@@ -113,6 +114,11 @@ predictions = model.predict(new_aim_vector)
 # save model to use it in main file app.py for the backend server to later fetch from the frontend
 
 
+# save only the trained parameter 
+
+torch.save(model.state_dict(), "myAntiCheatModel.pth")
+
+
 print(f"Shape of new_aim_vector: {np.shape(new_aim_vector)}")
 
 
@@ -120,7 +126,7 @@ print(f"Shape of new_aim_vector: {np.shape(new_aim_vector)}")
 print("Predictions (probability of being a cheater):", predictions)
 
 cheater = False
-predictions_binary = (predictions > 0.4).astype(int)
+predictions_binary = (predictions > 0.5).astype(int)
 print("Predictions (binary classification):", predictions_binary)
 
 # only for testing with hard coded values
