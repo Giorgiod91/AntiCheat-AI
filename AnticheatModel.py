@@ -110,6 +110,8 @@ model.fit(X, y, epochs=10)
 # Make predictions on new data
 predictions = model.predict(new_aim_vector)
 
+#::TODO: i need redefine the model so i need to make 80 20 for JCV cross validation then i can judge for over or uderfit !
+
 
 # save model to use it in main file app.py for the backend server to later fetch from the frontend
 
